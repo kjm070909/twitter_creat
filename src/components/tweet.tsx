@@ -1,8 +1,5 @@
-import PostTweetForm from "../components/post-twwet-form";
-import Timeline from "../components/timeline";
-import { auth } from "../firebase"
 import { styled } from "styled-components";
-
+import { ITweet } from "./timeline";
 
 const Wrapper = styled.div`
   display: grid;
@@ -29,11 +26,19 @@ const Payload = styled.p`
   margin: 10px 0px;
   font-size: 18px;
 `;
-export default function Home() {
-    return (
-        <Wrapper>
-          <PostTweetForm />
-          <Timeline/>
-        </Wrapper>
-      );
+
+export default function Tweet({ username, photo, tweet }: ITweet) {
+  return (
+    <Wrapper>
+      <Column>
+        <Username>{username}</Username>
+        <Payload>{tweet}</Payload>
+      </Column>
+      {photo ? (
+        <Column>
+          <Photo src={photo} />
+        </Column>
+      ) : null}
+    </Wrapper>
+  );
 }

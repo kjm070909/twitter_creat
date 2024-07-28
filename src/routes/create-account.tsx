@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 import {auth} from "../firebase"
 import { Link, useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
+import GithubButton from "../components/github-btn";
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
@@ -120,6 +121,7 @@ export default function CreateAccount() {
       </Form>
       {error !== "" ? <Error>{error}</Error> : null}
       <Wrapper><Link to="/login">lLogin</Link></Wrapper>
+      <GithubButton/>
     </Wrapper>
   );
 }

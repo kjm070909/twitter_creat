@@ -9,6 +9,7 @@ import LoadingScreen from "./components/loading-screen"
 import { auth } from "./firebase";
 import CreateAccount from "./routes/create-account"
 import ProtectedRoute from "./components/protected-route"
+import Profile from "./routes/profile"
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
             {
                 path:"",
                 element:<Home/>,
+            },
+            {
+                path:"profile",
+                element:<Profile/>
             }
         ]
     },
