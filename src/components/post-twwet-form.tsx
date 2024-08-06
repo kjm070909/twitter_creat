@@ -64,28 +64,28 @@ export default function PostTweetForm() {
   const [tweet, setTweet] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTweet(e.target.value);
+    setTweet(e.target.value); // 텍스트 상자 입력
   };
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (files && files.length === 1) {
-      setFile(files[0]);
+      setFile(files[0]); //사진 변수에 저장
     }
   };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const user = auth.currentUser;
+    const user = auth.currentUser; //유저 정보 가져오기
     if (!user || isLoading || tweet === "" || tweet.length > 180) return;
     try {
       setLoading(true);
-      const doc =  await addDoc(collection(db, "tweets"), {
+      const doc =  await addDoc(collection(db, "tweets"), { // 컬렉션에 넣고 싶은 데이터 넣기
         tweet,
         createdAt: Date.now(),
         username: user.displayName || "Anonymous",
         userId: user.uid,
       });
       if (file) {
-        const locationRef = ref(
+        const locationRef = ref( // 파일 위치 가져오기
           storage,
           `tweets/${user.uid}-${user.displayName}/${doc.id}`
         );
